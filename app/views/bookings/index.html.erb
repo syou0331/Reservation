@@ -1,0 +1,45 @@
+<h1>予約済みルーム一覧</h1>
+
+<% if flash.notice %>
+    <p class="notice"><%= flash.notice %></p>
+<% end %>
+
+<table>
+    <thead>
+        <tr>
+            <!--<th>id</th>-->
+            <th>ルーム画像</th>
+            <th>ルーム名</th>
+            <th>ルーム紹介</th>
+            <th>合計料金</th>
+            <th>開始日</th>
+            <th>終了日</th>
+            <th>予約確定日時</th>
+            <!--<th>物件id</th>-->
+            <th>人数</th>
+            <th>使用日数</th>
+            <th>削除</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <% @bookings.each do |booking| %>
+            <tr>
+                <!--<td><%= booking.id %></td>-->
+                <td><%= image_tag booking.hotel.hotel_image, size: '200x200' %></td>
+                <td><%= booking.hotel.hotel_name %></td>
+                <td><%= booking.hotel.hotel_introduction %></td>
+                <td>¥<%= booking.total_price %></td>
+                <td><%= booking.check_in %></td>
+                <td><%= booking.check_out %></td>
+                <td><%= l booking.created_at %></td>
+                <!--<td><%= booking.hotel_id %></td>-->
+                <td><%= booking.client_num %>人</td>
+                <td><%= booking.using_days %>日</td>
+                <td>
+                    <%= link_to "削除", booking, method: :delete, data: { confirm: "本当に削除しますか？" } %>
+                </td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
