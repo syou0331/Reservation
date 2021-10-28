@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  total_price: 1
+  check_in: 2021-09-13
+  check_out: 2021-09-13
+  booking_date: 2021-09-13
+  hotel_id: 1
+
+two:
+  total_price: 1
+  check_in: 2021-09-13
+  check_out: 2021-09-13
+  booking_date: 2021-09-13
+  hotel_id: 1

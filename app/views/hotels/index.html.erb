@@ -1,0 +1,42 @@
+<h1>ルーム情報一覧</h1>
+
+<% if flash.notice %>
+    <p class="notice"><%= flash.notice %></p>
+<% end %>
+
+
+
+<table>
+    <thead>
+        <tr>
+            <!--<th>id</th>-->
+            <th>ルーム画像</th>
+            <th>ルーム名</th>
+            <th>ルーム紹介</th>
+            <th>料金</th>
+            <th>住所</th>
+            <th>登録日</th>
+            <th>削除</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        <% @hotels.each do |hotel| %>
+            <tr>
+                <!--<td><%= hotel.id %></td>-->
+                <td><%= image_tag hotel.hotel_image, size: '200x200' %></td>
+                <td><%= link_to hotel.hotel_name, hotel %></td>
+                <td><%= hotel.hotel_introduction %></td>
+                <td><%= hotel.hotel_price %></td>
+                <td><%= hotel.hotel_address %></td>
+                <td><%= l hotel.created_at %></td>
+                <td>
+                    <%= link_to "削除", hotel, method: :delete, data: { confirm: "本当に削除しますか？" } %>
+                </td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
+
+<p><%= link_to "ルーム登録（debug用）", new_hotel_path %></p>

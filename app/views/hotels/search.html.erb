@@ -1,0 +1,41 @@
+<table>
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>ルーム画像</th>
+            <th>ルーム名</th>
+            <th>ルーム紹介</th>
+            <th>料金</th>
+            <th>住所</th>
+            <th>作成日</th>
+            <th>ルーム予約</th>
+            <th>参照</th>
+            <th>削除</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        <% @results.each do |result| %>
+            <tr>
+                <td><%= result.id %></td>
+                <td><＃%= image_tag hotel.hotel_image, size: '200x200' %></td>
+                <td><%= result.hotel_name %></td>
+                <td><%= result.hotel_introduction %></td>
+                <td><%= result.hotel_price %></td>
+                <td><%= result.hotel_address %></td>
+                <td><%= result.created_at %></td>
+
+                <td>
+                    <%= link_to "予約する", new_booking_path(result.id) %>
+                </td>
+                <td>
+                    <%= link_to "参照", hotel_path(result.id) %>
+                </td>
+                <td>
+                    <%= link_to "削除", hotel_path(result.id), method: :delete, data: { confirm: "本当に削除しますか？" } %>
+                </td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>

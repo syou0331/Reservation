@@ -1,0 +1,48 @@
+
+  <h1>予約確認画面</h1>
+ 
+    <table>
+      <tr>
+        <th>開始日</th>
+        <td><%= @booking.check_in %></td>
+      </tr>
+      <tr>
+        <th>終了日</th>
+        <td><%= @booking.check_out %></td>
+      </tr>
+      <tr>
+        <th>使用日数</th>
+        <td><%= @booking.using_days %>日</td>
+      </tr>
+      <tr>
+      <tr>
+        <th>人数</th>
+        <td><%= @booking.client_num %>人</td>
+      </tr>
+        <th>金額(お一人様あたり)</th>
+        <td>¥<%= @hotel.hotel_price %></td>
+      </tr>
+      <tr>
+        <th>合計金額</th>
+        <td>¥<%= @booking.total_price %></td>
+      </tr>
+    </table>
+
+    <%= form_for @booking, method: :confirm, url: hotels_booking_complete_path do |f| %>
+
+        <%= f.hidden_field :total_price, value: @booking.total_price %>    
+
+        <%= f.hidden_field :check_in, value: @booking.check_in %>
+    
+        <%= f.hidden_field :check_out, value: @booking.check_out %>    
+
+        <%= f.hidden_field :hotel_id, value: @booking.hotel_id %>
+
+        <%= f.hidden_field :client_num, value: @booking.client_num %>
+        
+        <%= f.hidden_field :using_days, value: @booking.using_days %>
+
+        <%= f.submit '上記で予約する', class: 'btn btn-primary btn-block' %>
+    <% end %>
+    <p><%= link_to "TOPへ戻る", root_path %></p>
+
